@@ -1,4 +1,4 @@
-name: Send updated metadata to index
+name: Send updated metadata to index 
 on:
   pull_request:
     types: [closed]
