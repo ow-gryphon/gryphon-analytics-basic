@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import copy
 import re
@@ -10,6 +11,7 @@ from bs4 import BeautifulSoup
 INDEX_FILE = "grypi/index.html"
 TEMPLATE_FILE = "grypi/pkg_template.html"
 
+VERSION_PATTERN = re.compile("^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$")
 
 def normalize(name):
     """ From PEP503 : https://www.python.org/dev/peps/pep-0503/ """
@@ -155,6 +157,8 @@ def main():
     context = json.loads(os.environ["GITHUB_CONTEXT"])
     repo_name = context["repository"].split("/")[-1]
     tag_name = context["event"]["ref"].split("/")[-1]
+
+    assert VERSION_PATTERN.match(tag_name)
 
     metadata_file = f"template/metadata.json"
     metadata = parse_metadata(metadata_file)
