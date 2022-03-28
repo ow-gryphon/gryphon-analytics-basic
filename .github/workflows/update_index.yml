@@ -31,14 +31,22 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
+      
+      
+      - uses: rickstaa/action-contains-tag@v1
+        id: contains_tag
+        with:
+          reference: "master"
+          tag: ${{ github.ref }}
 
       - name: Run Action
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          pip install beautifulsoup4
-          python template/.github/actions.py
-
+          if [[ ${{ steps.contains_tag.outputs.retval }} == 'true' ]]; then
+            pip install beautifulsoup4
+            python template/.github/actions.py
+          fi
       - name: Pushes index.html file
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:

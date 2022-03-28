@@ -28,3 +28,5 @@ jobs:
         user_name: 'vittorfp'
         commit_message: 'Adding metadata for the template ${{github.repository}}.'
 
+# TODO: Make the necessary changes in the workflow in order to append to the metadata.json
+# file instead of just copying the new one.
