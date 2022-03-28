@@ -158,7 +158,8 @@ def main():
     repo_name = context["repository"].split("/")[-1]
     tag_name = context["event"]["ref"].split("/")[-1]
 
-    assert VERSION_PATTERN.match(tag_name)
+    if not VERSION_PATTERN.match(tag_name):
+        raise RuntimeError(f"Version name not valid: {tag_name}")
 
     metadata_file = f"template/metadata.json"
     metadata = parse_metadata(metadata_file)
