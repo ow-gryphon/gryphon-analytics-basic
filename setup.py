@@ -11,7 +11,7 @@ reqs = []
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="v0.0.6",
+    version="v0.0.7",
     author="Daniel Wang",
     author_email="daniel.wang@oliverwyman.com",
     description="A public github-hosted python package for test, with dependency.",
