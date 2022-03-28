@@ -32,12 +32,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       
-      - uses: rickstaa/action-contains-tag@v1
-        id: contains_tag
-        with:
-          reference: "master"
-          tag: ${{ github.ref }}
-
       - name: Run Action
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
