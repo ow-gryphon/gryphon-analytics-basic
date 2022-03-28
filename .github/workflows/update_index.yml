@@ -36,10 +36,8 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-          if [[ ${{ steps.contains_tag.outputs.retval }} == 'true' ]]; then
-            pip install beautifulsoup4
-            python template/.github/actions.py
-          fi
+          pip install beautifulsoup4
+          python template/.github/actions.py
       
       - name: Pushes index.html file
         uses: dmnemec/copy_file_to_another_repo_action@main
