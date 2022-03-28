@@ -1,12 +1,13 @@
 name: Send updated metadata to index
+
 on:
-  pull_request:
-    types: [closed]
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'  
     branches:
       - master
       - main
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
 jobs:
   Send-file-to-index:
     if: github.event.pull_request.merged == true
@@ -28,3 +29,5 @@ jobs:
         user_name: 'vittorfp'
         commit_message: 'Adding metadata for the template ${{github.repository}}.'
 
+# TODO: Make the necessary changes in the workflow in order to append to the metadata.json
+# file instead of just copying the new one.
