@@ -69,7 +69,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: 'metadata.json'
+          source_file: 'template/metadata.json'
           destination_repo: 'ow-gryphon/grypi'
           destination_folder: ${{ github.event.repository.name }}
           destination_branch: 'master'
