@@ -10,8 +10,8 @@ VERSION_PATTERN = re.compile(
 )
 
 
-def get_metadata_path(package_name):
-    return Path("template") / package_name / "metadata.json"
+def index_metadata_path(package_name):
+    return Path("grypi") / package_name / "metadata.json"
 
 
 def read_metadata(file_name):
@@ -28,9 +28,8 @@ def main():
     if not VERSION_PATTERN.match(tag_name):
         raise RuntimeError(f"Version name not valid: {tag_name}")
 
-    metadata_file = f"template/metadata.json"
-    version_metadata = read_metadata(metadata_file)
-    metadata_path = get_metadata_path(repo_name)
+    version_metadata = read_metadata(f"template/metadata.json")
+    metadata_path = index_metadata_path(repo_name)
 
     if not metadata_path.is_file():
         metadata = {
