@@ -27,16 +27,15 @@ def main():
 
     if not VERSION_PATTERN.match(tag_name):
         raise RuntimeError(f"Version name not valid: {tag_name}")
-    
+
     new_metadata_path = f"template/metadata.json"
     new_metadata = read_metadata(new_metadata_path)
-    
+    new_metadata["version"] = tag_name
+
     metadata_path = index_metadata_path(repo_name)
 
     if not metadata_path.is_file():
-        metadata = {
-            tag_name: new_metadata
-        }
+        metadata = [new_metadata]
 
         with open(new_metadata_path, "w", encoding="utf-8") as f:
             f.write(json.dumps(metadata))
@@ -44,7 +43,16 @@ def main():
     else:
         with open(new_metadata_path, "r+", encoding="utf-8") as f:
             metadata = json.load(f)
-            metadata[tag_name] = new_metadata
+
+            if type(metadata) != list:
+                # if the metadata is not in the list format yet, convert it
+                new_format = []
+                for version, data in metadata:
+                    data["version"] = version
+                    new_format.append(data)
+                metadata = new_format
+
+            metadata.append(new_metadata)
 
             f.seek(0)
             f.write(json.dumps(metadata))
