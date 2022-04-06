@@ -43,11 +43,14 @@ def main():
     else:
         with open(new_metadata_path, "r+", encoding="utf-8") as f:
             metadata = json.load(f)
+            
+            with open(metadata_path, "r", encoding="utf-8") as f2:
+                index_metadata = json.load(f2)
 
-            if type(metadata) != list:
+            if type(index_metadata) != list:
                 # if the metadata is not in the list format yet, convert it
                 new_format = []
-                for version, data in metadata.items():
+                for version, data in index_metadata.items():
                     data["version"] = version
                     new_format.append(data)
                 metadata = new_format
