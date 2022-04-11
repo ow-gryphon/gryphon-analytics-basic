@@ -25,8 +25,9 @@ def main():
     repo_name = context["repository"].split("/")[-1]
     tag_name = context["event"]["ref"].split("/")[-1]
 
-    # if not VERSION_PATTERN.match(tag_name):
-    #     raise RuntimeError(f"Version name not valid: {tag_name}")
+    dry_run = False
+    if not VERSION_PATTERN.match(tag_name):
+        dry_run = True
 
     new_metadata_path = f"template/metadata.json"
     new_metadata = read_metadata(new_metadata_path)
@@ -47,7 +48,6 @@ def main():
         with open(new_metadata_path, "r+", encoding="utf-8") as f:
             metadata = json.load(f)
             
-            print(index_metadata)
             if type(index_metadata) != list:
 
                 # if the metadata is not in the list format yet, convert it
@@ -63,6 +63,9 @@ def main():
             f.write(json.dumps(index_metadata))
             f.truncate()
 
+    if dry_run:
+        raise RuntimeError(f"Running dry. Not copying the files to the definitive place. "
+                           f"Version name not valid: {tag_name}.")
 
 if __name__ == "__main__":
     main()

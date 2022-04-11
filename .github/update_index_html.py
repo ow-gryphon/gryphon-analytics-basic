@@ -163,9 +163,9 @@ def main():
     repo_name = context["repository"].split("/")[-1]
     tag_name = context["event"]["ref"].split("/")[-1]
 
-    dry_run = False
-    if not VERSION_PATTERN.match(tag_name):
-        dry_run = True
+    # dry_run = False
+    # if not VERSION_PATTERN.match(tag_name):
+    #     dry_run = True
 
     metadata_file = f"template/metadata.json"
     metadata = parse_metadata(metadata_file)
@@ -183,10 +183,6 @@ def main():
         register(args)
     else:
         update(args)
-
-    if dry_run:
-        raise RuntimeError(f"Running dry. Not copying the files to the definitive place. "
-                           f"Version name not valid: {tag_name}.")
 
 
 if __name__ == "__main__":
