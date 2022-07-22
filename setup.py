@@ -10,7 +10,7 @@ long_description = ""
 reqs = []
 
 setuptools.setup(
-    name="gryphon-analytics-basic",
+    name="gryphon-analytics-basic-sdasd",
     version="0.0.20",
     author="Daniel Wang",
     author_email="daniel.wang@oliverwyman.com",
