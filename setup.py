@@ -1,17 +1,15 @@
 import setuptools
 
-# with open("README.md", "r") as fh:
-#     long_description = fh.read()
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
-# with open('requirements.txt') as fr:
-#     reqs = fr.read().strip().split('\n')
+with open('requirements.txt') as fr:
+    requires = fr.read().strip().split('\n')
 
-long_description = ""
-reqs = []
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="0.0.22",
+    version="0.0.23",
     author="Daniel Wang",
     author_email="daniel.wang@oliverwyman.com",
     description="A public github-hosted python package for test, with dependency.",
@@ -24,5 +22,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=reqs,
+    install_requires=requires,
 )
