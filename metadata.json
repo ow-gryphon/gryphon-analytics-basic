@@ -1,7 +1,8 @@
 {
-    "display_name": "Basic analytics template",
+    "display_name": "Basic analytics project",
     "command": "init",
     "author": "Daniel Wang",
-    "description": "Basic analytics template for OW Gryphon.",
-    "read_more_link": "www.yahoo.com.br"
+    "author_email": "daniel.wang@oliverwyman.com",
+    "description": "Basic analytics template for OW Gryphon with folders for notebooks and re-usable code utilities",
+    "read_more_link": "https://github.com/ow-gryphon/gryphon-analytics-basic"
 }

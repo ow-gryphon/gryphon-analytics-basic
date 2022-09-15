@@ -4,23 +4,21 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 with open('requirements.txt') as fr:
-    requires = fr.read().strip().split('\n')
+    requirements = fr.read().strip().split('\n')
 
+with open('metadata.json') as fr:
+    metadata = json.load(fr)
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="0.0.24",
-    author="Daniel Wang",
-    author_email="daniel.wang@oliverwyman.com",
-    description="A public github-hosted python package for test, with dependency.",
+    version="0.0.25",
+    author=metadata.get("author", ""),
+    author_email=metadata.get("author_email", ""),
+    description=metadata.get("description", ""),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ow-gryphon/gryphon-analytics-basic",
     packages=setuptools.find_packages(),
-    classifiers=[
-        "Programming Language :: Python :: 3.6",
-        "Operating System :: OS Independent",
-    ],
-    python_requires='>=3.6',
-    install_requires=requires,
+    python_requires='>=3.7',
+    install_requires=requirements,
 )
