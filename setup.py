@@ -1,3 +1,4 @@
+import json
 import setuptools
 
 with open("README.md", "r") as fh:
@@ -11,7 +12,7 @@ with open('metadata.json') as fr:
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="0.0.25",
+    version="0.0.26",
     author=metadata.get("author", ""),
     author_email=metadata.get("author_email", ""),
     description=metadata.get("description", ""),
