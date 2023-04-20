@@ -12,7 +12,7 @@ with open('metadata.json') as fr:
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="0.0.27",
+    version="0.0.28",
     author=metadata.get("author", ""),
     author_email=metadata.get("author_email", ""),
     description=metadata.get("description", ""),
