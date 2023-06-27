@@ -4,7 +4,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-with open('requirements.txt') as fr:
+with open('gryphon_requirements.txt') as fr:
     requirements = fr.read().strip().split('\n')
 
 with open('metadata.json') as fr:
@@ -12,7 +12,7 @@ with open('metadata.json') as fr:
 
 setuptools.setup(
     name="gryphon-analytics-basic",
-    version="0.0.27",
+    version="0.0.60",
     author=metadata.get("author", ""),
     author_email=metadata.get("author_email", ""),
     description=metadata.get("description", ""),
